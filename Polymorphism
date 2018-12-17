@@ -1,0 +1,113 @@
+interface Konus {
+
+    public String getAd();
+    public void setAd(String ad);
+    public String getSoyad();
+    public void setSoyad(String soyad);
+    String merhaba();
+}
+
+abstract class Insan implements Konus {
+
+    private String ad,soyad;
+
+    protected Insan() {
+    }
+    @Override
+    public void setAd(String pAd){
+        this.ad=pAd;
+    }
+    @Override
+    public String getAd(){
+        return ad;
+    }
+    @Override
+    public void setSoyad(String pSoyad){
+        this.ad=pSoyad;
+    }
+    @Override
+    public String getSoyad(){
+        return ad;
+    }
+}
+class Turk extends Insan {
+    private String ad,soyad;
+
+    public Turk() {
+        super();
+    }
+    @Override
+    public void setAd(String pAd){
+       this.ad=pAd;
+    }
+    @Override
+    public String getAd(){
+        return ad;
+    }
+    @Override
+    public void setSoyad(String pSoyad){
+        this.soyad=pSoyad;
+    }
+    @Override
+    public String getSoyad(){
+        return soyad;
+    }
+        @Override
+        public String merhaba() {
+            return "Merhaba!";
+        }
+
+}
+
+class Ingiliz extends Insan {
+private String ad,soyad;
+    public Ingiliz() {
+        super();
+    }
+    @Override
+    public void setAd(String pAd){
+       this.ad=pAd;
+    }
+    @Override
+    public String getAd(){
+        return ad;
+    }
+    @Override
+    public void setSoyad(String pSoyad){
+        this.soyad=pSoyad;
+    }
+    @Override
+    public String getSoyad(){
+        return soyad;
+    }
+    @Override
+    public String merhaba() {
+        return "Hello!";
+    }
+
+}
+
+public class Deneme {
+
+    public static void main(String[] args) {
+        int i;
+        Insan[] a={new Turk(),new Ingiliz()};
+        Turk b=new Turk();
+        b.setAd("Duygu");
+        b.setSoyad("Ucer");
+        Ingiliz c=new Ingiliz();
+        c.setAd("Mary");
+        c.setSoyad("Lou");
+        a[0]=b;
+        a[1]=c;
+    
+        for(i=0;i<a.length;i++){
+            System.out.println(" "+a[i].getAd()+" "+a[i].getSoyad()+" "+a[i].merhaba());
+        }
+        
+            
+        
+
+    }
+
+}

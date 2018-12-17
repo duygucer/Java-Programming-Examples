@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab8;
+
+/**
+ *
+ * @author Duygu
+ */
+public class Kisi {
+    private String isim;
+    public Kisi(String name){
+        this.isim=name;
+    }
+    public String getIsim(){
+        return isim;
+    }
+}
+
+class Calisan extends Kisi{
+    private int maas;
+    public Calisan(String name,int maas){
+        super(name);
+        this.maas=maas;
+    }
+    public int getMaas(){
+        return maas;
+    }
+    public void setMaas(int salary){
+        this.maas=salary;
+    }
+}
+
+class Yonetici extends Calisan{
+    private int bonus;
+    public Yonetici(String name,int maas){
+        super(name,maas);
+        bonus=0;
+    }
+    public void setBonus(int bonus){
+        this.bonus=bonus;
+    }
+    public int getBonus(){
+        return bonus;
+    }
+    @Override
+    public int getMaas(){
+        return super.getMaas()+bonus;
+    }
+}
+
+class Sirket{
+    private Calisan[] calisanlar;
+    public Sirket(){
+        calisanlar=new Calisan[3];
+        Yonetici mudur=new Yonetici("Duygu Ucer",8000);
+        mudur.setBonus(1200);
+        calisanlar[0]=mudur;
+        calisanlar[1]=new Calisan("Seymanur Mutlu",7300);
+        calisanlar[2]=new Calisan("Utku Sayan",5000);
+    }
+    public void calisanlariGoster(){
+        for(Calisan calisan:calisanlar)
+            if(calisan!=null)
+                System.out.println(calisan.getIsim()+" "+calisan.getMaas());      
+    }
+    public static void main(String[] args){
+        Sirket sirket=new Sirket();
+        sirket.calisanlariGoster();
+    }
+}

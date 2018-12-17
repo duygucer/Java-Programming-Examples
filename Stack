@@ -1,0 +1,78 @@
+
+import java.util.ArrayList;
+
+class stack {
+    private ArrayList <Integer> s=new ArrayList <Integer>(100);
+    private int top;
+    private int capacity;
+    
+        stack(){
+        capacity=100;
+        top=0;
+    }
+        stack(int a){
+        top=s.size();
+        s.add(a);
+    }
+        stack(stack a){
+    }
+        void empty(){
+        top=s.size();
+        if(top==0){
+            System.out.println("Stack Bostur.");
+        }
+    }
+        void push(int a){
+        top=s.size();
+        if(top<100){
+            s.add(a);
+        } 
+    }
+        void pop(){
+            top=s.size();
+            if(top!=0){
+            s.remove(top-1);
+            top=top-1;
+            }
+            else if(top==0)
+                System.out.println("Eleman yok.");
+           
+        //son elemanı çeker
+    }
+        void peek(){
+            top=s.size();
+            System.out.println(""+s.get(top));
+        //stacke en son eklenen elemanın degeri
+    }
+        int tostring(){
+            System.out.println(s);
+           return 0;
+        }
+    }
+
+public class Stack {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        stack a=new stack();
+        a.push(1);
+        a.push(2);
+        stack b= new stack(a);
+        System.out.println(a.tostring());
+        a.pop();
+        System.out.println(a.tostring());
+        a.pop();
+        System.out.println(a.tostring());
+        a.pop();
+        System.out.println(a.tostring());
+        a.push(3);
+        System.out.println("a stringinin icerigi ["+a.tostring()+"]");
+        System.out.println("b stringinin icerigi ["+b.tostring()+"]");
+        
+           
+    }
+    
+}

@@ -1,0 +1,72 @@
+interface Nakliye {
+
+    int tonaj = 1000;
+
+    public void yukle(int tonaj);
+
+    public void bosalt(int tonaj);
+
+    class Ucak implements Nakliye {
+
+        int yuk = 0;
+
+        @Override
+        public void yukle(int yuklenen) {
+            if (yuk + yuklenen > 0) {
+                yuk = yuk + yuklenen;
+            }
+            System.out.println("Ucak yükleniyor." + yuklenen);
+        }
+
+        @Override
+        public void bosalt(int yukb) {
+            if (yuk - yukb > 0) {
+                yuk = yuk - yukb;
+            }
+            System.out.println("Ucak Bosaltiliyor." + yukb);
+        }
+
+        public void yukGoster() {
+            System.out.println("" + yuk);
+        }
+    }
+
+    class Gemi implements Nakliye {
+
+        int yuk = 0;
+
+        @Override
+        public void yukle(int yuklenen) {
+            if (yuk + yuklenen > 0) {
+                yuk = yuk + yuklenen;
+            }
+            System.out.println("Gemi yükleniyor." + yuklenen);
+        }
+
+        @Override
+        public void bosalt(int yukb) {
+            if (yuk - yukb > 0) {
+                yuk = yuk - yukb;
+            }
+            System.out.println("Gemi Bosaltiliyor." + yukb);
+        }
+
+        public void yukGoster() {
+            System.out.println("" + yuk);
+        }
+    }
+
+    public static void main(String[] args) {
+        Ucak u = new Ucak();
+        u.yukle(100);
+        u.bosalt(20);
+        u.yukle(1000);
+        u.yukGoster();
+        Gemi g = new Gemi();
+        g.yukle(100);
+        g.bosalt(20);
+        g.yukle(1000);
+        g.yukGoster();
+
+    }
+}

@@ -482,7 +482,7 @@ class GraphicsDemo extends Applet {
                     g.fillOval(22 + yenikonumx, 22 + yenikonumy, 16, 16);
                     System.out.println("*********************************");
                     System.out.println(diziRs[secim - 1] + " robotunun hareket süresi: "+((ileri+20-konumx)*gezinmeHizlari[secim-1]*10)+(atlananengels*engeldenGecmeSureleri[secim-1]));
-                    break;
+                    
                 }
                 System.out.println("Sola: ");
                 int sol = input.nextInt();
@@ -661,6 +661,9 @@ class GraphicsDemo extends Applet {
                 input.nextLine();
                 alinanyol = ileri + geri + sol + sag;
             }
+            if(diziRs[secim-1].equalsIgnoreCase("seri")||diziRs[secim-1].equalsIgnoreCase("paralel"))
+            gezinmeHizlari[secim-1]=1;
+
             double GezinmeSure = alinanyol / gezinmeHizlari[secim - 1];
             int kolciz = (int) (kolUzunluklari[secim - 1] / 10) * 40;
             int yukkonumx = 0;
@@ -700,7 +703,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -718,7 +721,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                         break;
@@ -737,7 +740,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -750,7 +753,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                     }
@@ -772,7 +775,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -790,7 +793,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                         break;
@@ -809,7 +812,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -821,7 +824,7 @@ class GraphicsDemo extends Applet {
                         if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                        if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                        if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -843,7 +846,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -861,7 +864,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                         break;
@@ -880,7 +883,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -892,7 +895,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                     }
@@ -914,7 +917,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -932,7 +935,7 @@ class GraphicsDemo extends Applet {
                         if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                        if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                        if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                         break;
@@ -951,7 +954,7 @@ class GraphicsDemo extends Applet {
                             if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                            if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                            if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                             break;
@@ -963,7 +966,7 @@ class GraphicsDemo extends Applet {
                         if (diziRs[secim - 1].equalsIgnoreCase("tekerlekli paralel") || diziRs[secim - 1].equalsIgnoreCase("tekerlekli seri") || diziRs[secim - 1].equalsIgnoreCase("spider paralel") || diziRs[secim - 1].equalsIgnoreCase("spider seri") || diziRs[secim - 1].equalsIgnoreCase("paletli paralel") || diziRs[secim - 1].equalsIgnoreCase("paletli spider")) {
                                 System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + sabitlenmeSureleri[secim - 1] + gecikmeSureleri[secim - 1] + TasimaSure + " 'sn dir.");
                             }
-                        if (diziRs[secim - 1].equalsIgnoreCase("spider")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
+                        if (diziRs[secim - 1].equalsIgnoreCase("seri")||diziRs[secim - 1].equalsIgnoreCase("paralel")) {
                                  System.out.println(diziRs[secim - 1] + " robotunun başlangıç konumundan sonkonuma geçen süre: " + GezinmeSure + (engeldenGecmeSureleri[secim - 1] * atlananengels) + TasimaSure + " 'sn dir.");
                             }
                         break;
@@ -1016,6 +1019,7 @@ public class Main {
         input.nextLine();
         String[] diziRobot = new String[robotSayisi];
         double[] kolUzunluklari = new double[robotSayisi];
+
         double[] engeldenGecmeSureleri = new double[robotSayisi];
         int[] sabitlenmeSureleri = new int[robotSayisi];//gonderildi
         int[] gecikmeSureleri = new int[robotSayisi];//gonderildi

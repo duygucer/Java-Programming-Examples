@@ -1,0 +1,459 @@
+package prolab2.pkg1;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.FileImageInputStream;
+import javax.swing.JPanel;
+import static prolab2.pkg1.Graphics.secim;
+import prolab2.pkg1.Lokasyon;
+import prolab2.pkg1.LukeSkywalker;
+import prolab2.pkg1.MasterYoda;
+
+
+public class Prolab21 extends JPanel implements KeyListener, ActionListener {
+
+    int secilen = secim();
+
+    int[][] harita = {
+        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0},
+        {0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0},
+        {0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0},
+        {0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0},
+        {0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0},
+        {1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1},
+        {0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0},
+        {0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0},
+        {0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0},
+        {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},};
+
+    //Timer timer = new Timer(5, this);
+    private BufferedImage arrow;
+    private BufferedImage arrow2;
+    private BufferedImage arrow3;
+    private BufferedImage arrow4;
+    private BufferedImage kupa;
+    private BufferedImage MasterYoda;
+    private BufferedImage LukeSkywalker;
+    private BufferedImage Karakter1;
+    private BufferedImage Karakter2;
+    private BufferedImage Karakter3;
+    private int karakterX = 350;
+    private int karakterY = 300;
+    private int BX=4;
+    private int BY=0;
+    private int CX=12;
+    private int CY=0;
+    private int DX=13;
+    private int DY=5;
+    private int EX=4;
+    private int EY=10;
+    private int AX=0;
+    private int AY=5;
+    private int karakterdirY = 50;
+    private int karakterdirX = 50;
+    Lokasyon lokasyon = new Lokasyon(6, 5);//baslangic lokasyonunu x:6,y:5 indexlerinden baslatiyoruz.
+    private int lokasyondirX = 1;
+    private int lokasyondirY = 1;
+    DarthVader darthVader = new DarthVader("DartVader", "Kotu",lokasyon);
+    KyloRen kyloRen = new KyloRen("KyloRen", "Kotu", lokasyon);
+    Stormtrooper stormtrooper = new Stormtrooper("Stormtrooper", "kotu", lokasyon);
+    MasterYoda masterYoda = new MasterYoda("MasterYoda", "iyi", lokasyon);
+    LukeSkywalker lukeSkywalker = new LukeSkywalker("LukeSkywalker", "iyi", lokasyon);
+
+    
+    File haritamiz = new File("Harita.txt");
+    ArrayList<String> Characters = new ArrayList<String>();
+    ArrayList<String> Doors = new ArrayList<String>();
+
+    String[] characters = new String[1000];
+    String[] doors = new String[7];
+    String[] KarakterId = new String[100];
+    String[] KapiNo = new String[100];
+    String gecici = new String();
+
+    BufferedReader reader2 = null;
+    BufferedReader reader = null;
+    
+        int satirsayisi = 0;
+        String satir;
+        String satir2;
+        //satir sayisi hesabı
+        
+    public Prolab21() {
+
+        try {
+            arrow = ImageIO.read(new FileImageInputStream(new File("a.jpg")));
+            kupa = ImageIO.read(new FileImageInputStream(new File("b.jpg")));
+            arrow2 = ImageIO.read(new FileImageInputStream(new File("e.jpg")));
+            arrow3 = ImageIO.read(new FileImageInputStream(new File("f.jpg")));
+            arrow4 = ImageIO.read(new FileImageInputStream(new File("g.jpg")));
+            MasterYoda = ImageIO.read(new FileImageInputStream(new File("d.jpg")));
+            LukeSkywalker = ImageIO.read(new FileImageInputStream(new File("c.jpg")));
+            Karakter1 = ImageIO.read(new FileImageInputStream(new File("dv.jpg")));
+            Karakter2 = ImageIO.read(new FileImageInputStream(new File("s.jpg")));
+            Karakter3 = ImageIO.read(new FileImageInputStream(new File("kr.jpg")));
+        } catch (IOException e) {
+        }
+        if (secilen == 1) {
+            System.out.println("LukeSkywalker'i sectiniz...");
+        }
+        if (secilen == 2) {
+            System.out.println("Master Yoda'yı sectiniz...");
+        }
+        // timer.start();
+        try {
+            reader = new BufferedReader(new FileReader(haritamiz));
+            reader2 = new BufferedReader(new FileReader(haritamiz));
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Prolab21.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //eger dosya bulunamazsa
+        if (!haritamiz.exists()) {
+            System.out.println(haritamiz.getName() + " adlı dosya bulunamadı.");
+            System.exit(0);
+        }
+
+        try {
+            satir = reader.readLine();
+            while (satir != null) {
+                if (satir.length() > 0) {
+                    satirsayisi++;
+                    satir = reader.readLine();
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(prolab2.pkg1.Graphics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int tut = 0;
+        satirsayisi = satirsayisi - 11;
+        //System.out.println("Satir sayisi: "+satirsayisi);
+
+         try {
+            satir2 = reader.readLine();
+            for (int i = 0; i < satirsayisi; i++) {
+                satir2 = reader2.readLine();
+                String[] output = satir2.split(",");
+                characters[i] = output[0];
+                doors[i] = output[1];
+                tut = characters[i].indexOf(":");
+                KarakterId[i] = characters[i].substring(tut + 1);
+                tut = doors[i].indexOf(":");
+                KapiNo[i] = doors[i].substring(tut + 1);
+                //txt yi okuduğunu kontrol etmek icin   
+                // System.out.println("Karakter id: "+KarakterId[satirsayisi]);
+                // System.out.println("Kapi no: "+KapiNo[satirsayisi]);
+            }
+    } catch (IOException ex) {
+            Logger.getLogger(java.awt.Graphics.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+
+        int i, j = 0;
+
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, 1000, 1000);
+        g.setColor(Color.BLACK);
+        g.drawLine(50, 50, 50, 600);//left long container part
+        g.drawLine(51, 50, 51, 600);
+        g.drawLine(50, 50, 750, 50);//up long container part
+        g.drawLine(50, 51, 750, 51);
+        g.drawLine(50, 600, 750, 600);//down long container part
+        g.drawLine(50, 599, 750, 599);
+        g.drawLine(750, 50, 750, 600);//right long container part
+        g.drawLine(749, 50, 749, 600);
+        //satirlar
+        for (i = 50; i <= 550; i += 50) {
+            g.drawLine(50, 50 + i, 750, 50 + i);
+        }
+        //Sutunlar
+        for (i = 50; i <= 710; i += 50) {
+            g.drawLine(50 + i, 50, 50 + i, 600);
+        }
+
+        g.setColor(Color.LIGHT_GRAY);
+        for (i = 0; i <= 650; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(52 + i, 52, 48, 48);
+            g.fillRect(52 + i, 551, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 85 + i, 95);
+            g.drawString("0", 85 + i, 595);
+        }
+        g.setColor(Color.LIGHT_GRAY);
+        for (i = 0; i <= 500; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(52, 52 + i, 48, 48);
+            g.fillRect(701, 52 + i, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 85 + i, 95);
+            g.drawString("0", 85, 95 + i);
+            g.drawString("0", 735, 95 + i);
+        }
+        for (i = 0; i <= 300; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(152, 152 + i, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 185, 185 + i);
+        }
+        g.setColor(Color.BLUE);
+        g.fillRect(252, 52, 48, 48);
+        g.fillRect(652, 52, 48, 48);
+        g.fillRect(702, 302, 48, 48);
+        g.fillRect(252, 552, 48, 48);
+        g.fillRect(52, 302, 48, 48);
+
+        g.setColor(Color.WHITE);
+        g.drawString("B", 272, 82);
+        g.drawString("C", 672, 82);
+        g.drawString("D", 722, 332);
+        g.drawString("E", 272, 582);
+        g.drawString("A", 72, 332);
+
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(202, 352, 48, 48);
+        g.fillRect(302, 352, 48, 48);
+        g.fillRect(252, 252, 48, 48);
+        g.fillRect(302, 202, 48, 48);
+        g.fillRect(302, 252, 48, 48);
+        g.fillRect(302, 102, 48, 48);
+        g.fillRect(602, 152, 48, 48);
+        g.fillRect(602, 302, 48, 48);
+        g.fillRect(602, 402, 48, 48);
+        g.fillRect(602, 402, 48, 48);
+
+        g.setColor(Color.WHITE);
+        g.drawString("0", 232, 392);
+        g.drawString("0", 332, 392);
+        g.drawString("0", 282, 292);
+        g.drawString("0", 332, 242);
+        g.drawString("0", 332, 292);
+        g.drawString("0", 332, 142);
+        g.drawString("0", 632, 192);
+        g.drawString("0", 632, 342);
+        g.drawString("0", 632, 442);
+        g.drawString("0", 632, 442);
+
+        for (i = 0; i <= 150; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(252 + i, 452, 48, 48);
+            g.fillRect(502, 302 + i, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 535, 340 + i);
+            g.drawString("0", 290 + i, 485);
+        }
+        for (i = 0; i <= 200; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(402, 152 + i, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 435, 190 + i);
+        }
+        for (i = 0; i <= 100; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(502 + i, 152, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 535 + i, 190);
+        }
+        for (i = 0; i <= 300; i += 50) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(552, 152 + i, 48, 48);
+            g.setColor(Color.WHITE);
+            g.drawString("0", 585, 190 + i);
+        }
+        g.setColor(Color.WHITE);
+        g.fillRect(702, 502, 48, 48);
+        g.fillRect(552, 352, 48, 48);
+
+        g.setColor(Color.YELLOW);
+        g.fillRect(352, 302, 48, 48);
+
+        g.drawImage(kupa, 752, 500, kupa.getWidth() / 9, kupa.getHeight() / 9, this);
+        g.drawImage(arrow, 260, 7, arrow.getWidth() / 9, arrow.getHeight() / 9, this);
+        g.drawImage(arrow, 660, 7, arrow.getWidth() / 9, arrow.getHeight() / 9, this);
+        g.drawImage(arrow2, 762, 315, arrow2.getWidth() / 9, arrow2.getHeight() / 9, this);
+        g.drawImage(arrow3, 265, 610, arrow3.getWidth() / 9, arrow3.getHeight() / 9, this);
+        g.drawImage(arrow4, 7, 310, arrow4.getWidth() / 9, arrow4.getHeight() / 9, this);
+
+        Lokasyon baslangic_lokasyon = new Lokasyon(5, 5);
+        if (secilen == 1) {
+            g.drawImage(LukeSkywalker, karakterX+2, karakterY+2, LukeSkywalker.getWidth() / 12, LukeSkywalker.getHeight() / 12, this);
+
+        } else if (secilen == 2) {
+            g.drawImage(MasterYoda, karakterX, karakterY, MasterYoda.getWidth() / 4, MasterYoda.getHeight() / 5, this);
+        }
+
+       
+            for (i = 0; i < satirsayisi; i++) {
+                if (KarakterId[i].equalsIgnoreCase("Darth Vader") && KapiNo[i].equals("B")) {
+                    g.drawImage(Karakter1, 252, 52, Karakter1.getWidth() / 5, Karakter1.getHeight() / 5, this);
+                    
+                }
+                if (KarakterId[i].equalsIgnoreCase("Stormtrooper") && KapiNo[i].equals("B")) {
+                    g.drawImage(Karakter2, 252, 52, Karakter2.getWidth() / 9, Karakter2.getHeight() / 9, this);
+
+                    
+                }
+                if (KarakterId[i].equalsIgnoreCase("Kylo Ren") && KapiNo[i].equals("B")) {
+                    g.drawImage(Karakter3, 252, 52, Karakter3.getWidth() / 20, Karakter3.getHeight() / 20, this);
+                    kyloRen.EnKisaYol(BY,BX,lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Darth Vader") && KapiNo[i].equals("C")) {
+                    g.drawImage(Karakter1, 652, 52, Karakter1.getWidth() / 5, Karakter1.getHeight() / 5, this);
+                    darthVader.EnKisaYol(CY,CX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Stormtrooper") && KapiNo[i].equals("C")) {
+                    g.drawImage(Karakter2, 652, 52, Karakter2.getWidth() / 9, Karakter2.getHeight() / 9, this);
+                    stormtrooper.EnKisaYol(CY,CX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Kylo Ren") && KapiNo[i].equals("C")) {
+                    g.drawImage(Karakter3, 652, 52, Karakter3.getWidth() / 20, Karakter3.getHeight() / 20, this);
+                    kyloRen.EnKisaYol(CY,CX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Darth Vader") && KapiNo[i].equals("D")) {
+                    g.drawImage(Karakter1, 704, 304, Karakter1.getWidth() / 5, Karakter1.getHeight() /5, this);
+                    darthVader.EnKisaYol(DY,DX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Stormtrooper") && KapiNo[i].equals("D")) {
+                    g.drawImage(Karakter2, 702, 302, Karakter2.getWidth() / 9, Karakter2.getHeight() / 9, this);
+                    stormtrooper.EnKisaYol(DY,DX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Kylo Ren") && KapiNo[i].equals("D")) {
+                    g.drawImage(Karakter3, 702, 302, Karakter3.getWidth() / 20, Karakter3.getHeight() / 20, this);
+                    kyloRen.EnKisaYol(DY,DX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Darth Vader") && KapiNo[i].equals("E")) {
+                    g.drawImage(Karakter1, 254, 554, Karakter1.getWidth() / 5, Karakter1.getHeight() / 5, this);
+                    darthVader.EnKisaYol(EY,EX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Stormtrooper") && KapiNo[i].equals("E")) {
+                    g.drawImage(Karakter2, 252, 552, Karakter2.getWidth() / 9, Karakter2.getHeight() / 9, this);
+                    stormtrooper.EnKisaYol(EY,EX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Kylo Ren") && KapiNo[i].equals("E")) {
+                    g.drawImage(Karakter3, 252, 552, Karakter3.getWidth() / 20, Karakter3.getHeight() / 20, this);
+                    kyloRen.EnKisaYol(EY,EX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Darth Vader") && KapiNo[i].equals("A")) {
+                    g.drawImage(Karakter1, 52, 302, Karakter1.getWidth() / 5, Karakter1.getHeight() / 5, this);
+                    darthVader.EnKisaYol(AY,AX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Stormtrooper") && KapiNo[i].equals("A")) {
+                    g.drawImage(Karakter2, 52, 302, Karakter2.getWidth() / 9, Karakter2.getHeight() / 9, this);
+                    stormtrooper.EnKisaYol(AY,AX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+                if (KarakterId[i].equalsIgnoreCase("Kylo Ren") && KapiNo[i].equals("A")) {
+                    g.drawImage(Karakter3, 52, 302, Karakter3.getWidth() / 20, Karakter3.getHeight() / 20, this);
+                    kyloRen.EnKisaYol(AY,AX, lokasyon.getY(),lokasyon.getX(), harita);
+                }
+
+            }
+       
+
+    }
+
+    @Override
+    public void repaint() {
+        super.repaint(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int c = e.getKeyCode();
+        if (c == KeyEvent.VK_LEFT) {
+            if (karakterX <= 50) {
+                karakterX = 50;
+            } else {
+                System.out.println("Sol lokasyon :" + harita[lokasyon.getY()][lokasyon.getX() - 1]);
+                if (harita[lokasyon.getY()][lokasyon.getX() - 1] == 1) {
+                    //karakterX -= karakterdirX;
+                    lokasyon.setX(lokasyon.getX() - lokasyondirX);
+                    System.out.println("X : " + lokasyon.getX());
+                    System.out.println("Y : " + lokasyon.getY());
+                    System.out.println("");
+                    karakterX = (lokasyon.getX() * 50) + 50;
+                }
+            }
+        } else if (c == KeyEvent.VK_RIGHT) {
+            if (karakterX >= 700) {
+                karakterX = 700;
+            } else {
+                System.out.println("Sag lokasyon :" + harita[lokasyon.getY()][lokasyon.getX() + 1]);
+                if (harita[lokasyon.getY()][lokasyon.getX() + 1] == 1) {
+                    //karakterX += karakterdirX;
+                    lokasyon.setX(lokasyon.getX() + lokasyondirX);
+                    System.out.println("X : " + lokasyon.getX());
+                    System.out.println("Y : " + lokasyon.getY());
+                    System.out.println("");
+                    karakterX = (lokasyon.getX() * 50) + 50;
+                }
+            }
+        } else if (c == KeyEvent.VK_UP) {
+            if (karakterY <= 50) {
+                karakterY = 50;
+            } else {
+                System.out.println("Ust lokasyon :" + harita[lokasyon.getY() - 1][lokasyon.getX()]);
+                if (harita[lokasyon.getY() - 1][lokasyon.getX()] == 1) {
+                    //karakterY -= karakterdirY;
+                    lokasyon.setY(lokasyon.getY() - lokasyondirY);
+                    System.out.println("X : " + lokasyon.getX());
+                    System.out.println("Y : " + lokasyon.getY());
+                    System.out.println("");
+                    karakterY = (lokasyon.getY() * 50) + 50;
+                }
+            }
+        } else if (c == KeyEvent.VK_DOWN) {
+            if (karakterY >= 550) {
+                karakterY = 550;
+            } else {
+                System.out.println("Alt lokasyon :" + harita[lokasyon.getY() + 1][lokasyon.getX()]);
+                if (harita[lokasyon.getY() + 1][lokasyon.getX()] == 1) {
+                    //karakterY += karakterdirY;
+                    lokasyon.setY(lokasyon.getY() + lokasyondirY);
+                    System.out.println("X : " + lokasyon.getX());
+                    System.out.println("Y : " + lokasyon.getY());
+                    System.out.println("");
+                    karakterY = (lokasyon.getY() * 50) + 50;
+                }
+            }
+        }
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
+
+}
